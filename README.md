@@ -2,6 +2,7 @@
 FortMMS is a basic Fortnite matchmaker written in JavaScript, Built under Fastify.
 
 # Features
+- IP Bans (changeable in config)
 - Configuration Manager
 - S1 - S19 Support (you will need additional code in your gameserver for builds below 3.5)
 
