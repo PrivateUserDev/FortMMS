@@ -56,7 +56,11 @@ function handleMatchmakingFlow(connection) {
 function setupMatchmaking(fastify) {
   fastify.get('/matchmaking', { websocket: true }, (connection, req) => {
     handleMatchmakingFlow(connection);
-    
+    if (isIPBanned(ip)) {
+      console.log(`Blocked Connection from a banned ip ${ip}`);
+      return connection.socket.close();
+    }
+      
     connection.socket.on('message', message => {});
     connection.socket.on('close', () => {});
   });
