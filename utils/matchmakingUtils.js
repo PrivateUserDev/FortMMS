@@ -1,4 +1,9 @@
 const crypto = require('crypto');
+const config = require('../config/config');
+
+function isIPBanned(ip) {
+  return config.bannedIPs.has(ip);
+}
 
 function handleMatchmakingFlow(connection) {
   if (connection.socket.protocol.toLowerCase().includes("xmpp")) {
@@ -55,12 +60,15 @@ function handleMatchmakingFlow(connection) {
 
 function setupMatchmaking(fastify) {
   fastify.get('/matchmaking', { websocket: true }, (connection, req) => {
-    handleMatchmakingFlow(connection);
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+
     if (isIPBanned(ip)) {
-      console.log(`Blocked Connection from a banned ip ${ip}`);
+      console.log(`Blocked Connection from a banned IP: ${ip}`);
       return connection.socket.close();
     }
-      
+
+    handleMatchmakingFlow(connection);
+
     connection.socket.on('message', message => {});
     connection.socket.on('close', () => {});
   });
