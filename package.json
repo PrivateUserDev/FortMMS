@@ -1,0 +1,17 @@
+{
+  "name": "FortMMS",
+  "version": "1.0.0",
+  "description": "Fortnite matchmaker written in JavaScript",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "@fastify/websocket": "^8.2.0",
+    "fastify": "^4.24.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
