@@ -12,6 +12,8 @@ const config = {
   bEnableGameSessions: false, // enables gamesessions, you need additional code for this in your gameserver.
   bEnableQueues: false, // enables queue's
   bEnableBackfil: false, // let's people join a server until the match started (instant queues)
+
+  gameserverApiKey: "api_key_here" // api key the gameserver will need to use to tell the matchmaker its up or when match started etc.
 };
 
 module.exports = config;
